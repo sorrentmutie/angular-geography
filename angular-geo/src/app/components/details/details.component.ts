@@ -15,6 +15,7 @@ export class DetailsComponent implements OnChanges {
   arenas: Arena[] = [];
   center: MyCoordinates = null;
   selectedNation: string;
+  selectedInfo: string;
   @Input() typeId = 'hybrid';
   @Input() zoom = 4;
   @Input() latitude: number;
