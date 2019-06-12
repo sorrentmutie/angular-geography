@@ -1,0 +1,15 @@
+<div *ngIf="center">
+  <label>Map Center: ({{center.latitude}} , {{center.longitude}})</label>
+  <agm-map #map [zoom]="zoom" [latitude]="latitude" [longitude]="longitude"
+                [mapTypeId]="'hybrid'">
+      <agm-marker  *ngFor="let locationItem of arenas;let i = index"
+      [latitude]="locationItem.Latitude" [longitude]="locationItem.Longitude"
+      (markerClick)="clickedMarker($event)">
+        <agm-info-window #info [disableAutoPan]="true">
+          <strong>Arena: {{locationItem.Name}}</strong> <br/>
+          <strong>Town: {{locationItem.Town}}</strong> <br/>
+          <label>Capacity: {{locationItem.Capacity}}</label>
+        </agm-info-window>
+      </agm-marker>
+  </agm-map>
+</div>

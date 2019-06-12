@@ -1,0 +1,14 @@
+<div *ngIf="myChangingCart && myChangingCart.data">
+  <google-chart class="chart"
+    [height]="400"
+    [title]="myChangingCart.title"
+    [type]="myChangingCart.type"
+    [data]="myChangingCart.data"
+    [columnNames]="myChangingCart.columnNames"
+    [roles]="myChangingCart.roles"
+    [options]="myChangingCart.options"
+    (select)="onSelect($event)">
+  </google-chart>
+  <p *ngIf="selectedNation.length > 0">You selected {{selectedNation}}</p>
+  <app-details [nation]='selectedNation'></app-details>
+</div>

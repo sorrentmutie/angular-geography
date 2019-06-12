@@ -1,0 +1,13 @@
+agm-map {
+  height: 300px;
+  width: 100%;
+}
+
+strong
+ {
+   color: red;
+ }
+
+ label {
+   color: blue;
+ }
