@@ -15,7 +15,8 @@ export class DataService {
     { Nation: 'Italy', Count: 10 },
     { Nation: 'Australia', Count: 4 },
     { Nation: 'Netherlands', Count: 4 },
-    { Nation: 'Mexico', Count: 5 }];
+    { Nation: 'Mexico', Count: 5 }
+  ];
 
   private arenas = [
     { Id: 8233, Name: '10 de Diciembre', Nation: 'Mexico', Town: 'Ciudad Cooperativa Cruz Azul',

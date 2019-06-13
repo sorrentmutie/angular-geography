@@ -28,16 +28,14 @@ export class SummaryComponent implements OnInit {
 
   onSelect(event: ChartEvent) {
     if (event && event[0] && event[0].row >= 0) {
-      const row= event[0].row;
+      const row = event[0].row;
       this.selectedNation = this.geoSummary[row][0];
     }
   }
 
   private SetChart(data: any): MyChart  {
-     const columnNames = ['Nation', 'Count'];
      const mychart: MyChart = {
       type: 'GeoChart',
-      columnNames,
       data,
       options: {
         colorAxis: {colors: ['purple', 'blue', 'green']},

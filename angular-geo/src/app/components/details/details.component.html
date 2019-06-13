@@ -1,6 +1,6 @@
 <div *ngIf="center">
   <label>Map Center: ({{center.latitude}} , {{center.longitude}})</label>
-  <agm-map #map [zoom]="zoom" [latitude]="latitude" [longitude]="longitude"
+  <agm-map #map [zoom]="zoom" [latitude]="center.latitude" [longitude]="center.longitude"
                 [mapTypeId]="'hybrid'">
       <agm-marker  *ngFor="let locationItem of arenas;let i = index"
       [latitude]="locationItem.Latitude" [longitude]="locationItem.Longitude"

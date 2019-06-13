@@ -14,12 +14,10 @@ export class DetailsComponent implements OnChanges {
   @Input() nation: string;
   arenas: Arena[] = [];
   center: MyCoordinates = null;
-  selectedNation: string;
+ // selectedNation: string;
   selectedInfo: string;
-  @Input() typeId = 'hybrid';
-  @Input() zoom = 4;
-  @Input() latitude: number;
-  @Input() longitude: number;
+  typeId = 'hybrid';
+  zoom = 4;
   @ViewChild('map') agmMap: AgmMap;
   @ViewChild('info') agmInfo: AgmInfoWindow;
   // @ViewChildren('info') agmInfo:QueryList<AgmInfoWindow>;
@@ -32,18 +30,15 @@ export class DetailsComponent implements OnChanges {
     if (this.nation.length > 0) {
       this.data.getArenas(this.nation).subscribe(x => {
         this.arenas = x;
-        console.table(x);
         this.center = this.centerMap();
-        this.latitude = this.center.latitude;
-        this.longitude = this.center.longitude;
       });
     }
   }
 
   clickedMarker(info: any) {
     this.zoom = 16;
-    this.latitude = info.latitude;
-    this.longitude = info.longitude;
+    this.center.latitude = info.latitude;
+    this.center.longitude = info.longitude;
     this.typeId =  `'satellite'`;
   }
 

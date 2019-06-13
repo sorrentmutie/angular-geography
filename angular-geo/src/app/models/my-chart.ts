@@ -1,6 +1,5 @@
 export interface MyChart {
   type: string;
-  columnNames: string[];
   data: any[];
   options: MyOption;
 }

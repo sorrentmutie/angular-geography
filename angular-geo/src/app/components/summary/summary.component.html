@@ -1,11 +1,8 @@
 <div *ngIf="myChangingCart && myChangingCart.data">
   <google-chart class="chart"
     [height]="400"
-    [title]="myChangingCart.title"
     [type]="myChangingCart.type"
     [data]="myChangingCart.data"
-    [columnNames]="myChangingCart.columnNames"
-    [roles]="myChangingCart.roles"
     [options]="myChangingCart.options"
     (select)="onSelect($event)">
   </google-chart>
