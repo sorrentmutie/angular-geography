@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges, SimpleChanges, ViewChild  } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 import { Arena } from 'src/app/models/arena';
-import { MyCoordinates } from 'src/app/models/coordinates';
+import { MyCoordinates, GeographicalHelper, ThreeDimensionalPoint } from 'src/app/models/coordinates';
 import { AgmMap, AgmInfoWindow } from '@agm/core';
 
 @Component({
@@ -39,30 +39,29 @@ export class DetailsComponent implements OnChanges {
     this.zoom = 16;
     this.center.latitude = info.latitude;
     this.center.longitude = info.longitude;
-    this.typeId =  `'satellite'`;
   }
 
   private centerMap(): MyCoordinates {
-    let x = 0;
-    let y = 0;
-    let z = 0;
-    this.arenas.forEach(arena => {
-      const lat = arena.Latitude * Math.PI / 180;
-      const lon = arena.Longitude * Math.PI / 180;
-      x += Math.cos(lat)  * Math.cos(lon);
-      y += Math.cos(lat) * Math.sin(lon);
-      z += Math.sin(lat);
-    });
+    const helper = new GeographicalHelper();
     const total = this.arenas.length;
+
     if (total > 0) {
-      x = x / total;
-      y = y / total;
-      z = z / total;
-      const centralLongitude = Math.atan2(y, x);
-      const centralSquareRoot = Math.sqrt(x * x + y * y);
-      const centralLatitude = Math.atan2(z, centralSquareRoot);
-      return { latitude : centralLatitude * 180 / Math.PI, longitude : centralLongitude * 180 / Math.PI};
+      const points = this.ThreeDimensionalPointsOfArenas(this.arenas);
+      const averagePoint = helper.calculateAveragePoint(points);
+      return helper.convertThreeDimensionalPointToLatitudeAndLongitude(averagePoint);
     }
     return { latitude : 0, longitude : 0};
   }
+
+  private ThreeDimensionalPointsOfArenas(arenas: Arena[]): ThreeDimensionalPoint[] {
+    const helper = new GeographicalHelper();
+    const points = [];
+    arenas.forEach( arena => {
+      points.push(helper.convertLatitudeAndLongitudeToThreeDimensionalPoint({latitude: arena.Latitude, longitude: arena.Longitude}));
+    });
+    return points;
+  }
 }
+
+
+
