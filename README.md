@@ -1,6 +1,6 @@
 # angular-geography
 
-Remember to put your Google Api Key inside the file environment.ts
+Remember to put your Google Api Key inside the file src/environments/environment.ts
 
 
 export const environment = {
